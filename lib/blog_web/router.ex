@@ -12,6 +12,19 @@ defmodule BlogWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Guardian.Plug.VerifyHeader
+    plug Guardian.Plug.LoadResource
+  end
+
+  pipleline :authenticated do
+    plug Guardian.Plug.EnsureAuthenticated
+  end
+
+  scope "/api/v1", BlogWeb do
+    pipe_through :api
+
+    pipe_trough :authenticated
+    resources "/users", UserController, except: [:new, :edit]
   end
 
   scope "/", BlogWeb do

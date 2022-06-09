@@ -19,6 +19,7 @@ defmodule Blog.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
+      [applications: [:comeonin]],
       mod: {Blog.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
@@ -48,7 +49,9 @@ defmodule Blog.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:guardian, "~> 0.14"},
+      {:comeonin, "~> 3.0"}
     ]
   end
 

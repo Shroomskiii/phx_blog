@@ -50,3 +50,14 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
+
+
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+  verify_module: Guardian.JWT,  # optional
+  issuer: "MyAppName",
+  ttl: { 30, :days },
+  allowed_drift: 2000,
+  verify_issuer: true, # optional
+  secret_key: "tghLouWT8AsKJZoIKphVX0yIHlIm5FSdleNN4JJSQExczt1U7ZGlxdq3cP7IauGJ", # Insert previously generated secret key!
+  serializer: Blog.GuardianSerializer
