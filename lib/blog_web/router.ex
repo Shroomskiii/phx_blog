@@ -16,14 +16,14 @@ defmodule BlogWeb.Router do
     plug Guardian.Plug.LoadResource
   end
 
-  pipleline :authenticated do
+  pipeline :authenticated do
     plug Guardian.Plug.EnsureAuthenticated
   end
 
   scope "/api/v1", BlogWeb do
     pipe_through :api
 
-    pipe_trough :authenticated
+    pipe_through :authenticated
     resources "/users", UserController, except: [:new, :edit]
   end
 
