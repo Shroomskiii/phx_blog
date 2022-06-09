@@ -25,7 +25,7 @@ defmodule BlogWeb.Router do
 
     pipe_through :authenticated
     resources "/users", UserController, except: [:new, :edit]
-  end
+  end\
 
   scope "/", BlogWeb do
     pipe_through :browser
