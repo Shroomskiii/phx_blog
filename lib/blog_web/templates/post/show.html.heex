@@ -1,0 +1,42 @@
+<h1>Show Post</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @post.title %>
+  </li>
+
+  <li>
+    <strong>Summary:</strong>
+    <%= @post.summary %>
+  </li>
+
+  <li>
+    <strong>Body:</strong>
+    <%= @post.body %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post) %></span> |
+<span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>
+<span><%= link "Delete", to: Routes.post_path(@conn, :delete, @post), method: :delete, data: [confirm: "Are you sure"] %></span>
+
+
+<h3>Leave your comment</h3>
+<%= form_for @comment_changeset, Routes.post_comment_path(@conn, :create, @post), fn f -> %>
+  <%= label f, :body %>
+  <%= textarea f, :body %>
+  <%= error_tag f, :body %>
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>
+
+<h3>Comments</h3>
+<ul>
+<%= for comment <- @post.comments do %>
+  <li class="comment"><%= comment.body %></li>
+<% end %>
+</ul>
