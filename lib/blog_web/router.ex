@@ -1,5 +1,6 @@
 defmodule BlogWeb.Router do
   use BlogWeb, :router
+  use Kaffy.Routes, scope: "/kaffy"
 
   import BlogWeb.UserAuth
 
@@ -11,6 +12,14 @@ defmodule BlogWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
+  end
+
+  pipeline :kaffy_browser do
+    plug :accepts, ["html", "json"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
   end
 
   pipeline :api do
