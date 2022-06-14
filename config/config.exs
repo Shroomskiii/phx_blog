@@ -52,10 +52,15 @@ config :phoenix, :json_library, Jason
 import_config "#{config_env()}.exs"
 
 config :blog, Blog.Guardian,
-    issuer: "blog",
-    secret_key: "KCGyu9XobeQ3G+c7sfM0DMUKjMTnvc/bvc7yoplkfDiHk4MVy2eQQspXo+Xxw9zm",
-    ttl: {3, :days}
+  issuer: "blog",
+  secret_key: "KCGyu9XobeQ3G+c7sfM0DMUKjMTnvc/bvc7yoplkfDiHk4MVy2eQQspXo+Xxw9zm",
+  ttl: {3, :days}
 
- config :blog, BlogWeb.AuthAccessPipeline,
+config :blog, BlogWeb.AuthAccessPipeline,
     module: Blog.Guardian,
     error_handler: BlogWeb.AuthErrorHandler
+
+config :kaffy,
+  otp_app: :blog,
+  ecto_repo: Blog.Repo,
+  router: BlogWeb.Router
