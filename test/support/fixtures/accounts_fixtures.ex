@@ -7,20 +7,20 @@ defmodule Blog.AccountsFixtures do
   @doc """
   Generate a user.
   """
-  def user_fixture(attrs \\ %{}) do
-    {:ok, user} =
-      attrs
-      |> Enum.into(%{
-        email: "some email",
-        is_admin: true,
-        name: "some name",
-        password_hash: "some password_hash",
-        phone: "some phone"
-      })
-      |> Blog.Accounts.create_user()
+  # def user_fixture(attrs \\ %{}) do
+  #   {:ok, user} =
+  #     attrs
+  #     |> Enum.into(%{
+  #       email: "some email",
+  #       is_admin: true,
+  #       name: "some name",
+  #       password_hash: "some password_hash",
+  #       phone: "some phone"
+  #     })
+  #     |> Blog.Accounts.create_user()
 
-    user
-  end
+  #   user
+  # end
 
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
   def valid_user_password, do: "hello world!"
