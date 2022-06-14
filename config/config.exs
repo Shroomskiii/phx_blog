@@ -50,3 +50,12 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
+
+config :blog, Blog.Guardian,
+    issuer: "blog",
+    secret_key: "KCGyu9XobeQ3G+c7sfM0DMUKjMTnvc/bvc7yoplkfDiHk4MVy2eQQspXo+Xxw9zm",
+    ttl: {3, :days}
+
+ config :blog, BlogWeb.AuthAccessPipeline,
+    module: Blog.Guardian,
+    error_handler: BlogWeb.AuthErrorHandler
