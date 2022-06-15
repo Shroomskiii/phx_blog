@@ -1,11 +1,14 @@
 <h1>Show Post</h1>
 
+
 <ul>
 
   <li>
     <strong>Title:</strong>
     <%= @post.title %>
   </li>
+  
+  <%= Blog.Image.url({@post.image, @post}, signed: true) |> img_tag %>
 
   <li>
     <strong>Summary:</strong>
