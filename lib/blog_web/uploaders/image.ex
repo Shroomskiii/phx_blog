@@ -39,7 +39,7 @@ defmodule Blog.Image do
 
   #Override the storage directory:
   def storage_dir(version, {file, scope}) do
-    "uploads/post/image/#{scope.id}"
+    "uploads/post/image"
   end
 
   # Provide a default URL if there hasn't been a file uploaded

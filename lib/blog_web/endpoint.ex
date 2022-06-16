@@ -30,8 +30,8 @@ defmodule BlogWeb.Endpoint do
     only: ~w(assets)
 
     plug Plug.Static,
-    at: "/uploads",
-    from: Path.expand("./uploads"),
+    at: "uploads",
+    from: Path.expand("uploads"),
     gzip: false
 
   # Code reloading can be explicitly enabled under the

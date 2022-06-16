@@ -17,6 +17,6 @@ defmodule Blog.Posts.Post do
     post
     |> cast(params, [:title, :summary, :body])
     |> cast_attachments(params, [:image])
-    |> validate_required([:title, :summary, :body])
+    |> validate_required([:title, :summary, :body, :image])
   end
 end
