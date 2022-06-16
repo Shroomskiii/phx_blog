@@ -8,6 +8,8 @@ defmodule Blog.Accounts.User do
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
 
+    has_many :posts, Blog.Posts.Post
+    has_many :comments, Blog.Comments.Comment
     timestamps()
   end
 

@@ -12,7 +12,7 @@ config :blog, Blog.Repo,
   username: "sasha",
   password: "12345",
   hostname: "localhost",
-  database: "blog_drup_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "test_blog#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 

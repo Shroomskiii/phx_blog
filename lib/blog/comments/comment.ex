@@ -4,6 +4,8 @@ defmodule Blog.Comments.Comment do
 
   schema "comments" do
     field :body, :string
+    
+    belongs_to :user, Blog.Accounts.User
     belongs_to :post, Blog.Posts.Post
     timestamps()
   end

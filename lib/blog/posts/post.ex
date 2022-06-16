@@ -8,6 +8,8 @@ defmodule Blog.Posts.Post do
     field :summary, :string
     field :title, :string
     field :image, Blog.Image.Type
+    
+    belongs_to :user, Blog.Accounts.User
     has_many :comments, Blog.Comments.Comment
     timestamps()
   end
