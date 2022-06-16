@@ -6,6 +6,7 @@ defmodule BlogWeb.PostController do
   alias Blog.Comments.Comment
   alias Blog.Comments
 
+
   def index(conn, _params) do
     posts = Posts.list_posts()
     render(conn, "index.html", posts: posts)
@@ -17,6 +18,9 @@ defmodule BlogWeb.PostController do
   end
 
   def create(conn, %{"post" => post_params}) do
+    IO.inspect(conn.assigns)
+    user_id = conn.assigns.current_user.id
+    post_params = Map.put(post_params, "user_id", user_id)
     case Posts.create_post(post_params) do
       {:ok, post} ->
         conn
