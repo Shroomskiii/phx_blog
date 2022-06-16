@@ -21,11 +21,16 @@
   </li>
 
 </ul>
+<%= if @current_user.id == @post.user_id do %>
+<span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post) %></span> 
+<% end %>
 
-<span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post) %></span> |
-<span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>
+<span><%= link "Back", to: Routes.post_path(@conn, :index) %></span> 
+
+<%= if @current_user.id == @post.user_id do %>
+
 <span><%= link "Delete", to: Routes.post_path(@conn, :delete, @post), method: :delete, data: [confirm: "Are you sure"] %></span>
-
+<% end %>
 
 <h3>Leave your comment</h3>
 <%= form_for @comment_changeset, Routes.post_comment_path(@conn, :create, @post), fn f -> %>
