@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :blog, Blog.Repo,
   username: "sasha",
-  password: "12345",
+  password: "1234",
   hostname: "localhost",
   database: "blog_drup_dev",
   stacktrace: true,
@@ -73,3 +73,6 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :waffle,
+ storage: Waffle.Storage.Local

@@ -69,9 +69,9 @@ defmodule Blog.Comments do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_comment(%Comment{} = comment, attrs) do
+  def update_comment(%Comment{} = comment, params) do
     comment
-    |> Comment.changeset(attrs)
+    |> Comment.changeset(params)
     |> Repo.update()
   end
 

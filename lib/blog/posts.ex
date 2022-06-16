@@ -52,10 +52,17 @@ defmodule Blog.Posts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_post(attrs \\ %{}) do
+  def create_post(params \\ %{}) do
     %Post{}
-    |> Post.changeset(attrs)
+    |> Post.changeset(params)
     |> Repo.insert()
+    # |> case do
+    #   {:ok, post} ->
+    #     Post.changeset(attrs)
+
+    #   {:error, post} ->
+    #     render(conn, "new.html", changeset: changeset)
+    # end
   end
 
   @doc """
@@ -101,7 +108,7 @@ defmodule Blog.Posts do
       %Ecto.Changeset{data: %Post{}}
 
   """
-  def change_post(%Post{} = post, attrs \\ %{}) do
-    Post.changeset(post, attrs)
+  def change_post(%Post{} = post, params \\ %{}) do
+    Post.changeset(post, params)
   end
 end
