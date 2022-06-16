@@ -38,8 +38,7 @@ defmodule BlogWeb.Router do
     resources "/posts", PostController, except: [:index, :show] do
       resources "/comments", CommentController, except: [:index, :show] #only: [:create]
     end
-  end
-
+end
   #Public routs
   scope "/", BlogWeb do
     pipe_through [:browser]
