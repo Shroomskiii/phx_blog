@@ -5,7 +5,7 @@ config :blog, Blog.Repo,
   username: "sasha",
   password: "1234",
   hostname: "localhost",
-  database: "blog_drup_dev",
+  database: "dev_blog",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
