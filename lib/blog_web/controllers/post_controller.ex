@@ -32,8 +32,9 @@ defmodule BlogWeb.PostController do
     end
   end
 
-  def show(conn, %{"id" => id, "user_id" => user_id}) do
+  def show(conn, %{"id" => id}) do
     post = Posts.get_post!(id)
+    IO.inspect(post)
     comment_changeset = Comments.change_comment(%Comment{})
     render(conn, "show.html", post: post, comment_changeset: comment_changeset)
   end
@@ -41,8 +42,15 @@ defmodule BlogWeb.PostController do
   def edit(conn, %{"id" => id}) do
     post = Posts.get_post!(id)
     IO.inspect(post)
-    changeset = Posts.change_post(post)
-    render(conn, "edit.html", post: post, changeset: changeset)
+    user_id = conn.assigns.current_user.id
+    if post.user_id == user_id do
+      changeset = Posts.change_post(post)
+      render(conn, "edit.html", post: post, changeset: changeset)
+    else
+      conn
+      |> put_flash(:error, "Access denied. You can edite your posts only!!!")
+      |> redirect(to: Routes.post_path(conn, :show, post))
+  end
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
@@ -61,10 +69,16 @@ defmodule BlogWeb.PostController do
 
   def delete(conn, %{"id" => id}) do
     post = Posts.get_post!(id)
-    {:ok, _post} = Posts.delete_post(post)
-
-    conn
-    |> put_flash(:info, "Post deleted successfully.")
-    |> redirect(to: Routes.post_path(conn, :index))
+    user_id = conn.assigns.current_user.id
+    if post.user_id == user_id do
+      {:ok, _post} = Posts.delete_post(post)
+      conn
+      |> put_flash(:info, "Post deleted successfully.")
+      |> redirect(to: Routes.post_path(conn, :index))
+    else
+      conn
+      |> put_flash(:error, "Access denied. You can delete your posts only!!!")
+      |> redirect(to: Routes.post_path(conn, :show, post))
+    end
   end
 end
