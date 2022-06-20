@@ -32,7 +32,7 @@ defmodule BlogWeb.PostController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"id" => id, "user_id" => user_id}) do
     post = Posts.get_post!(id)
     comment_changeset = Comments.change_comment(%Comment{})
     render(conn, "show.html", post: post, comment_changeset: comment_changeset)
@@ -40,6 +40,7 @@ defmodule BlogWeb.PostController do
 
   def edit(conn, %{"id" => id}) do
     post = Posts.get_post!(id)
+    IO.inspect(post)
     changeset = Posts.change_post(post)
     render(conn, "edit.html", post: post, changeset: changeset)
   end

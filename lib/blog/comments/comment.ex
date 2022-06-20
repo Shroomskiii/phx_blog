@@ -4,7 +4,7 @@ defmodule Blog.Comments.Comment do
 
   schema "comments" do
     field :body, :string
-    
+
     belongs_to :user, Blog.Accounts.User
     belongs_to :post, Blog.Posts.Post
     timestamps()
@@ -14,6 +14,7 @@ defmodule Blog.Comments.Comment do
   def changeset(comment, attrs) do
     comment
     |> cast(attrs, [:body])
+    |> validate_length(:body, min: 12, max: 72)
     |> validate_required([:body])
   end
 end
