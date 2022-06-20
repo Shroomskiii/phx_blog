@@ -13,3 +13,6 @@ To start Docker set values in dev.ex:
   password: "postgres",
   hostname: "db".
 Run command "sudo doncker-compose up --build"
+
+Admin panel:
+http://localhost:4000/kaffy
