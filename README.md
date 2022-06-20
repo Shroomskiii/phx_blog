@@ -12,4 +12,4 @@ To start Docker set values in dev.ex:
  * username: "posgres",
   password: "postgres",
   hostname: "db".
-Run command "sudo doncker-compose up"
+Run command "sudo doncker-compose up --build"
