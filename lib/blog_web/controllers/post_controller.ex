@@ -41,8 +41,8 @@ defmodule BlogWeb.PostController do
 
   def edit(conn, %{"id" => id}) do
     post = Posts.get_post!(id)
-    IO.inspect(post)
     user_id = conn.assigns.current_user.id
+    IO.inspect(conn)
     if post.user_id == user_id do
       changeset = Posts.change_post(post)
       render(conn, "edit.html", post: post, changeset: changeset)
@@ -50,7 +50,7 @@ defmodule BlogWeb.PostController do
       conn
       |> put_flash(:error, "Access denied. You can edite your posts only!!!")
       |> redirect(to: Routes.post_path(conn, :show, post))
-  end
+    end
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
